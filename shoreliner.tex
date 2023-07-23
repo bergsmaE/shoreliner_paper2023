@@ -89,27 +89,21 @@ In sections below we set out the optimisation of a radiometric index to optimall
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 \subsection{Water index retrieval}
-As a general matter, satellite derived indices are often used to identify, measure, follow and analyse natural processus. Like a vegetation index can be used to trace the health of the vegetation, yield of agricultural crops and even the likelihood to be a hotspot for musquitos. Water indices are more used to distinguish water from land, to detect lakes, rivers, floods and similarly in the coastal zone to detect the instantaneous water line. Propabily one of the most used and well know indices is the Normalised Difference Water Index. Normalised, so panshapening has no effect.
+As a general matter, satellite derived indices using a set of color bands are often used to identify, measure, follow and analyse natural processus. Like a vegetation index (using the red and Near Infra Red (NIR) bands) can be used to trace the health of the vegetation, yield of agricultural crops and even the likelihood to be a hotspot for musquitos. Water indices are more used to distinguish water from land, to detect lakes, rivers, floods and similarly in the coastal zone to detect the instantaneous water line. Probabily one of the most used and well know index to sepearate land from water is the Normalised Difference Water Index (NDWI) using the NIR and green or NIR and SWIR (Short Wave Infrared band). The NDWI or its close relative MNDWI are ratio based indices. Normalisation has it advantages, it is less affected by fluctuations in radiometric response, but it also has a disadvantage, for example pansharpening does not work as the ratio of the color bands remains identical, even while pansharpened. For example in \textit{Coastsat} --(checked on v2.0) they opt to bi-linearly interpolate the color bands before pansharpening. Another type of index is a substractive index, like the AWEI (Automated Water Extraction Index). These indices are not ratios or normalised and can therefor be used in pansharpend fashion. 
 
 
 
 
-
-
-An index is the result of a combination of spectral bands from the same acquisition.
-Physically speaking an illuminated body has it own reflective signature over the electromagnetic spectrum.
-Hence, the right combination of the different spectral bands gives an image that emphasizes more a particular feature than an other in the same scene.
-This is how indices work as it helps to distinguish certain bodies from a scene.
-We can categorize indices into one of the three following categories depending on its formula.
-First, ratio based indices perform a ratio between bands or a combination of bands.
-Indices widely used in the literature such as the Normalized Difference Water Index (NDWI) \citep{GAO1996257} and the Modified Normalized Difference Water Index (MNDWI) \citep{Xu2006} are based on a band ratio.
-Moreover, the normalized difference means that their value are bounded between 1 and -1.
-For example, a pixel with a NDWI value close to -1 is very likely to be a water pixel and inversely a pixel with NDWI value close to 1 is very likely to be a land pixel.
-
-Second category, the subtractive indices result from the subtraction (or addition) of spectral bands.
 The most used subtractive water index is the Automated Water Extraction Index (AWEI) \citep{FEYISA201423}, it has been designed in 2014 to automatically extract water bodies present on Landsat acquisitions.
 Subtractive indices generally use more spectral bands than ratio based index, making them not available for high-resolution satellite missions like Pleiades using less spectral bands than Landsat or Sentinel-2.
 The advantages of the subtractive water indices compared to ratio based indices is discussed in the next paragraph.
+
+
+
+
+
+
+
 
 The third category is the combination of bands in the false-RGB color space, also called RGB composition.
 Three spectral bands are put in a RGB color space to give an new image.
