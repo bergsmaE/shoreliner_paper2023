@@ -48,8 +48,7 @@
 %\newcommand{\orcidauthorB}{0000-0002-7638-1108} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Erwin W.J. Bergsma $^{1}$*\orcidA{}, Adrien Klotz $^{1,2}$, St\'{e}phanie Artigues$^{1}$, Marcan Graffin$^{1,2}$ and Anna Prenowitz $^{1}$}
-
+\Author{Erwin W.J. Bergsma $^{1}$*\orcidA{}, Adrien Klotz $^{1,2}$, St\'{e}phanie Artigues$^{1}$, Marcan Graffin$^{1,2}$, Anna Prenowitz $^{1}$, Rafael Almar$^{2}$}
 
 %\longauthorlist{yes}
 
@@ -79,38 +78,18 @@ $^{2}$ \quad IRD-LEGOS (Research Institute Pour Le Developpement - Laboratoire d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-Sandy coasts around the world are in constant search for the natural equilibrium with the environmental forcing it is exposed to. This natural morphodynamic behaviour is often controlled by human interventions to serve the goal of dictating our coastal environment so it becomes predictable and manageable. It is this antrhopogenic pressure that lays at the root of concepts such as coastal risks/hazards and solutions such as hard coastal structures. Without this anthorpegenic pressure there is just the natural movement of the shoreline at varying spatiotemporary scales. Erosion, and accretion often have a direct effect on populations that life from the sea and reside in its vincintiy. As a general concept, the shoreline position is a solid proxy (not a hollisitic view) for beach health and degree of protection; the wider your beach, the greater your buffer between land and sea, the greater your protection against environmental conditions and lower the flooding risk. Hence, measuring the shoreline can enable us to observe natural morphology, pretict future shoreline positions and deduct coastal risk indicators from them.
+Sandy coasts around the world are in constant search for the natural equilibrium with the environmental forcing it is exposed to. This natural morphodynamic behaviour is often controlled by human interventions to serve the goal of dictating our coastal environment so it becomes predictable and manageable. It is this anthropogenic pressure that lies at the root of concepts such as coastal risks/hazards and solutions such as hard coastal structures. Without this anthropogenic pressure, there is just the natural movement of the shoreline at varying spatiotemporal scales. Erosion and accretion often have a direct effect on populations that live from the sea and reside in its vicinity. As a general concept, the shoreline position is a solid proxy (not a holistic view) for beach health and degree of protection; the wider your beach, the greater your buffer between land and sea, the greater your protection against environmental conditions and lower the (flooding) risk. Hence, measuring the shoreline can enable us to observe natural morphology, predict future shoreline positions and deduct coastal risk indicators from them.
 
-It is important to note that different shoreline related questions require different and adequate spatial-temporal scales of data to be answered. Where the shoreline can be measured by GPS, one cannot expect to have a measurement every hour. While shorebased video camera system can deliver a shoreline position almost on a instant basis every 10-min they only cover local scales. Satellites can provide a sweet mean between the two, where freely available global satellite data is now acquired at least every 5 days, and by combining a suit of satellites in orbits this can be brought down to near-daily. So where it traditionally required quite an effort and financial investment to occasionally measure coastal indicators like the shoreline, we now benefit form data and infrastructure to analyse a local beach using a simple laptop with internet connection.
+It is important to note that different shoreline-related questions require different and adequate spatial-temporal scales of data to be answered. Where the shoreline can be measured by GPS, one cannot expect to have a measurement every hour. While shore-based video camera systems can deliver a shoreline position almost on an instant basis every 10-min they only cover local scales. Satellites can provide a sweet mean between the two, where freely available global optical satellite data is now acquired at least every 5 days, and by combining a suit of satellites in orbits this can be brought down to near-daily. So where it traditionally required quite an effort and financial investment to occasionally measure coastal indicators like the shoreline, we now benefit from data and infrastructure to analyse a local beach using a simple laptop with an internet connection and scale up to regional and even global studies if deployed on High-Performance cluster infrastructures. 
 
+The shoreline can be defined in a multiple ways. In this work we focus on detecting the instantaneous waterline at the moment of sensing the satellite image. While the shoreline can be estimated using non-optical data, in this work we focus on optical satellites only and we presume that the whole satellite image is acquired at the same instant (which is not the case and can be 20-40\% of a typical swash period --BINET). Optical satellite imagery is typically used to create indices like for example widely used NDWI (Normalised Difference Water Index) or AWEI$_{sh}$ that are thresholded to find the land/sea limit. Conceptually this is what implementations like CoastSat, CASSIE, PyIntertidalDEM and ECFAS employ to find the instantaneous waterline with differences their workflow and accessibility. Unfortunately, non of these methods have proven to be at the same time robust to many coastal environments, fully automated while being fast enough to enable large scale and temporal studies and require manual interventions. Here, we aim to fully automatically detect the shoreline as accurate and computationally efficient as possible through the creation of a radio-metrically optimised indicator and integration in the CNES-HPC. At first we start with Sentinel-2 data as all Sentinel-2 satellite data is directly available on the CNES-HPC to the computational core, which allows for large spatio-temporal scale applications within a reasonable time-frame.
 
-
-
-
-
-
-
-Climate change and human activities will significantly modify the morphology of coastlines causing erosion and flooding risks, endangering populations. Coastal researchers are attempting since the 20th century to understand the processes involved in the shore and shoreline evolution. \citep{STIVE2002211}
-Thus, providing an accurate location of the coastline has always been of primary necessity to the coastal research community.
-Traditionally, in-situ beach surveys and aerial remote image-based techniques (including photogrammetry, airborne Synthetic Aperture Radar (SAR), airborne Light Detection and Ranging Technology (LiDAR) and video imaging) provide high-resolution shoreline mapping.
-However they produce only a spatially and a temporally limited analysis of the shoreline evolution of a site of interest because of the high costs they induce. \citep{MCALLISTER2022, BOAK2005}
-In order to fully understand and model its evolution, we need to enlarge to continental scale the analysis of the shoreline over the time while keeping a high resolution mapping.
-This larger scale analysis can be accomplished with the help of freely available multispectral satellite acquisitions.
-Earth observation satellite missions such as Sentinel-2 have weekly to daily revisit times, large-scale coverage, and good spatial resolution of 10 to 20 meters, allowing for high-quality coastal monitoring at no cost. \citep{BERGSMA2020} 
-% Do we need to talk about Landsat sat as well ?
-Since the mid-2010's more and more studies have proposed methods and tools to recover Satellite Derived Shorelines (SDS).
-
-- State of the Art SDS method \citep{VOS2019_sub}
-
-Unfortunately, non of these methods have proven to be at the same time robust to many coastal environments, fully automated and fast enough to enable large scale and temporal studies. \citep{MCALLISTER2022}
-
-- Shorline def
-- Specify waterline proxy
-- Plan
+In sections below we set out the optimisation of a radiometric index to optimally separate land and sea using past knowledge on a variety of approaches. We set out the processing pipeline to extract the water index and find the optimum land sea limit. The method is mainly developed on the Atlantic coast of France and is then validated without modification in other parts of the world like Saint Louis in Senegal and around the FRF at Duck in the USA. In the discussion section limits, large scale applications and the transferability to other satellite optical sensors, notably the Landsat series is discussed followed by the conclusions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
-\subsection{Water index review for multi-spectral imagery}
+\subsection{Water index retrieval}
+As a general matter, indices are
 
 An index is the result of a combination of spectral bands from the same acquisition.
 Physically speaking an illuminated body has it own reflective signature over the electromagnetic spectrum.
