@@ -286,59 +286,65 @@ In term of computation time using the same S2 acquisitions, our extraction metho
 \myfigure{img/Results.png}{Comparison of waterline extracted using the new extraction method proposed in this paper (green line) with the in-situ measured waterline (red line). The right-hand side histograms display the cross-shore error in the positions of the extracted waterline. The smallest the cross-shore RMSE achieved a value of 2.6 meters corresponding to 1/4 of the Sentinel-2 pixel.}{validation}{1}
 
 \subsection{Improvement of the waterline extraction at low tide}
-    The extraction of the shoreline proxies at low tide is a challenge in presence of a beach experiencing a meso-microtidal range ($>$2 m) and energetic incident waves. \citep{ALMAR2012, CASTELLE2021107707}
-    At low tide, shallow pools of residual water and sand that is not already dried off appear in the intertidal zone.
-    This so-called wet sand zone is located on the water side of the distribution with the AWEIsh.
-    However, the wet sand should be classified on the land side to extract an accurate instantaneous waterline as its real position lies between the white-water and the wet sand areas. (see Fig.\ref{band_compare})
-    The same problem is reported by \citep{VOS2019_sub} using MNDWI.
-    To avoid this issue with such meso-macrotidal beach, shoreline proxies are measured only where the tide is higher than a certain threshold, essentially keeping the observations of high tide stages.
-    This results in a loss of temporal resolution that is particularly detrimental to the study of rapid shoreline evolution.
-    
-    The SCoWI was optimized to solve such issues occuring in the intertidal zones at low tide stages. 
-    The method we proposed was compared to the waterline resulting from the method of \citep{Bishop_sub_pixel}, namely AWEIsh thresholded by the Otsu's method.
-    The validation was conducted on the Capbreton Beach in the bay of Biscay, SW France.
-    This macro-tidal beach on the atlantic coast exhibits large portions of wet sand at low tide forming sandbars surrounded by large baïnes.
-    An example of the Capbreton beach at low tide acquired by Sentinel-2 is provided in Fig.\ref{SCOWI_vs_AWEI_hist}.
-    From this acquisition, the AWEIsh and SCoWI were computed.
-    and their respective histograms displayed.
-    Then instantaneous waterlines extracted with an Otsu's thresholding method are ploted in blue for the AWEIh and in green for the SCoWI.
-    Also the SCoWI of the same S2 acquisition is thresholded using our local minimum histogram method, the resulting instantaneous waterline is ploted in red.
-    It appears clearly that waterlines extracted with the SCoWI are closer to the actual waterline than the waterline extracted by the AWEIsh.
-    Wet sand pixels form a little bump on the AWEIsh histogram between 1000 and 2000 and thus they are not assimilated into the land distribution with a peak at -1500.
-    The SCoWI histogram presents a clearer distinction between the land and the water distribution with peaks at -2000 and 3000 respectively.
-    Moreover with the SCoWI, the most accurate waterline was extracted using the local minimum histogram thresholding method.
-    On the histogram, we observe that the Otsu threhsold cuts on part of the two distribution, resulting in an inaccurate classification of certain wet sand pixels 
-    On the other hand, the local minimum histgram threhsold is computed between the 2 distributions where their both contributions are minimized.
-    
-    \myfigure{img/AWEIsh_vs_SCOWI2.png}{a) Sentinel-2 acquisition of Capbreton beach at low tide. Instantaneous waterlines extracted by the 3 methods compared are displayed in plain lines. Waterline extracted by the SCoWI combined to the local minimum histogram thresholding method (red line) is the closest to the actual waterline on the acquisition. b) AWEIsh histogram of this S2 acquisition. The dashed blue line is located at the Otsu's threhsold value computed for this histogram. c) SCoWI histogram of this S2 acquisition. The dashed green line is located at the Otsu's threhsold value computed for this histogram. The dashed red line is located at the local minimum histogram threhsold value computed for this histogram.}{SCOWI_vs_AWEI_hist}{1}
+The extraction of the shoreline proxies at low tide is a challenge in presence of a beach experiencing a meso-microtidal range ($>$2 m) and energetic incident waves. \citep{ALMAR2012, CASTELLE2021107707}
+At low tide, shallow pools of residual water and sand that is not already dried off appear in the intertidal zone.
+This so-called wet sand zone is located on the water side of the distribution with the AWEIsh.
+However, the wet sand should be classified on the land side to extract an accurate instantaneous waterline as its real position lies between the white-water and the wet sand areas. (see Fig.\ref{band_compare})
+The same problem is reported by \citep{VOS2019_sub} using MNDWI.
+To avoid this issue with such meso-macrotidal beach, shoreline proxies are measured only where the tide is higher than a certain threshold, essentially keeping the observations of high tide stages.
+This results in a loss of temporal resolution that is particularly detrimental to the study of rapid shoreline evolution.
 
-    
+The SCoWI was optimized to solve such issues occuring in the intertidal zones at low tide stages. 
+The method we proposed was compared to the waterline resulting from the method of \citep{Bishop_sub_pixel}, namely AWEIsh thresholded by the Otsu's method.
+The validation was conducted on the Capbreton Beach in the bay of Biscay, SW France.
+This macro-tidal beach on the atlantic coast exhibits large portions of wet sand at low tide forming sandbars surrounded by large baïnes.
+An example of the Capbreton beach at low tide acquired by Sentinel-2 is provided in Fig.\ref{SCOWI_vs_AWEI_hist}.
+From this acquisition, the AWEIsh and SCoWI were computed.
+and their respective histograms displayed.
+Then instantaneous waterlines extracted with an Otsu's thresholding method are ploted in blue for the AWEIh and in green for the SCoWI.
+Also the SCoWI of the same S2 acquisition is thresholded using our local minimum histogram method, the resulting instantaneous waterline is ploted in red.
+It appears clearly that waterlines extracted with the SCoWI are closer to the actual waterline than the waterline extracted by the AWEIsh.
+Wet sand pixels form a little bump on the AWEIsh histogram between 1000 and 2000 and thus they are not assimilated into the land distribution with a peak at -1500.
+The SCoWI histogram presents a clearer distinction between the land and the water distribution with peaks at -2000 and 3000 respectively.
+Moreover with the SCoWI, the most accurate waterline was extracted using the local minimum histogram thresholding method.
+On the histogram, we observe that the Otsu threhsold cuts on part of the two distribution, resulting in an inaccurate classification of certain wet sand pixels 
+On the other hand, the local minimum histgram threhsold is computed between the 2 distributions where their both contributions are minimized.
+
+\myfigure{img/AWEIsh_vs_SCOWI2.png}{a) Sentinel-2 acquisition of Capbreton beach at low tide. Instantaneous waterlines extracted by the 3 methods compared are displayed in plain lines. Waterline extracted by the SCoWI combined to the local minimum histogram thresholding method (red line) is the closest to the actual waterline on the acquisition. b) AWEIsh histogram of this S2 acquisition. The dashed blue line is located at the Otsu's threhsold value computed for this histogram. c) SCoWI histogram of this S2 acquisition. The dashed green line is located at the Otsu's threhsold value computed for this histogram. The dashed red line is located at the local minimum histogram threhsold value computed for this histogram.}{SCOWI_vs_AWEI_hist}{1}
+
+
 \section{Results and discussion}
 
-    \subsection{Intertidal DEM}
-    The combination between our extracted waterlines and a global tide model such a FES 2014 \citep{carrere2016fes} provides elevation measurements in the intertidal zone with a horizontal resolution of less than 10 meters.
-    Topography derived from conventional remote sensing techniques on the intertidal zone is missing.
-    Uniformity of the sand and high variability of the intertidal zone explain why techniques based on stereoscopic acquisitions to derive the topography of a scene fail in the coastal environment.
-    The intertidal DEM obtained based on 3D extracted water lines is a very interesting result for coastal researchers in terms of modeling and monitoring the elevation of these crucial areas where topography and bathymetry meet.
-    An example of intertidal DEM is provided in Fig.\ref{HENDAYE_topo}.
-    However, caution must be taken when performing an intertidal DEM.
-    The DEM is valid only for aggregation of extracted waterlines acquired over a short period ranging from months to years depending on the site of the study.
-    The morphological evolutions of coastlines induced by erosion and accretion over long periods make the resulting DEM incoherent and thus not representative of the reality.
-    
-    \myfigure{img/HENDAYE_shoreline_DEM.png}{An example of intertidal DEM on Hendaye beach, SW France. It was obtained from the combination of the extracted instantaneous waterlines and the predicted water levels of each waterline point with FES2014 global tide model of Sentinel-2 acquisition from XX to XX.}{HENDAYE_topo}{1}
+\subsection{Intertidal DEM}
+The combination between our extracted waterlines and a global tide model such a FES 2014 \citep{carrere2016fes} provides elevation measurements in the intertidal zone with a horizontal resolution of less than 10 meters.
+Topography derived from conventional remote sensing techniques on the intertidal zone is missing.
+Uniformity of the sand and high variability of the intertidal zone explain why techniques based on stereoscopic acquisitions to derive the topography of a scene fail in the coastal environment.
+The intertidal DEM obtained based on 3D extracted water lines is a very interesting result for coastal researchers in terms of modeling and monitoring the elevation of these crucial areas where topography and bathymetry meet.
+An example of intertidal DEM is provided in Fig.\ref{HENDAYE_topo}.
+However, caution must be taken when performing an intertidal DEM.
+The DEM is valid only for aggregation of extracted waterlines acquired over a short period ranging from months to years depending on the site of the study.
+The morphological evolutions of coastlines induced by erosion and accretion over long periods make the resulting DEM incoherent and thus not representative of the reality.
 
-    \subsection{Shoreline evolution monitoring at continental and local scale}
-    STLOUIS example + a Figure ?
+\myfigure{img/HENDAYE_shoreline_DEM.png}{An example of intertidal DEM on Hendaye beach, SW France. It was obtained from the combination of the extracted instantaneous waterlines and the predicted water levels of each waterline point with FES2014 global tide model of Sentinel-2 acquisition from XX to XX.}{HENDAYE_topo}{1}
+
+\subsection{Shoreline evolution monitoring at continental and local scale}
+
+STLOUIS example + a Figure ?
+
+\subsection{Transferability}
 
 
-    \subsection{Discussion ( or Limitations ?)}
-    Limitations:
-    - Presence of shadows induced by cliffs
-    - Shallow waters such as atolls
-    - Tide elevation model
 
-    - Help of AI but at what cost ?
-    - Adaptative index ?
+
+
+\subsection{Limitations}
+Limitations:
+- Presence of shadows induced by cliffs
+- Shallow waters such as atolls
+- Tide elevation model
+
+- Help of AI but at what cost ?
+- Adaptative index ?
 
 \section{Conclusion}
 TBD
