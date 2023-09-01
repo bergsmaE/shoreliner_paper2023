@@ -38,10 +38,10 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Sub-pixel shoreline extraction method using multi-spectral satellite optical imagery}
+\Title{Sub-pixel instantaneous waterline extraction method for multi-spectral satellite optical imagery}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{A sub-pixel shoreline extraction method using multi-spectral satellite optical imagery}
+\TitleCitation{Sub-pixel instantaneous waterline extraction method for multi-spectral satellite optical imagery}
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0002-7638-1108} % Add \orcidA{} behind the author's name
@@ -173,27 +173,21 @@ Individual dates show good performance, and similar to \citet{VOS2019_google}, e
 \subsection{Large scale applications}
 Recent trends in waterline detection show the significance of local applications to validate and better understand the performance of the waterline detection whereafter these same methods are extended to larger spatiotemporal scales \citep{VOS2019_sub, almar2021global, Vos2023}. Although the waterline is a first order approximation of morphological change, fluctuations at the coast and climate impacts, it does deliver very valuable insight in the impact of example climate modes on the coastal zone. Also, in areas that are traditionally data poor, like most of Africa \citep{almar2022coastal}.  
 
-Let us consider St. Louis in Senegal, that is a storm-free environment exposed to domination of bi-directional very energetic swells that originate from far off to the Northern or Southern Atlantic Ocean. Most of the time the Northern component dominates, resulting in a very strong alongshore transport and migrating sand-spit towards the South \citep{bergsma2020sand, taveneau2021observing}. In 2003, an artificial breach of the sand-spit was forced to relieve the city of St. Louis from extreme water levels on the land-side. Since 2018, St. Louis is monitored regularly to understand the morphodynamics to better adapt to future changes. Interestingly, the beach in front of the city of St. Louis was at most erosive state at this time, the beach virtually disappeared, leaving the fishermen houses and supporting facilities exposed to the elements. After 2019, a strong accretion has been observed, a perfect case to test our waterline detection. 
+Let us consider St. Louis in Senegal, that is a storm-free environment exposed to domination of bi-directional very energetic swells that originate from far off to the Northern or Southern Atlantic Ocean. Most of the time the Northern component dominates, resulting in a very strong alongshore transport and migrating sand-spit (called \textit{Langue de Barbarie}) towards the South \citep{bergsma2020sand, taveneau2021observing}. In 2003, an artificial breach of the sand-spit was forced to relieve the city of St. Louis from extreme water levels on the land-side. Since 2018, St. Louis is monitored regularly to understand the morphodynamics to better adapt to future changes. Interestingly, the beach in front of the city of St. Louis was at most erosive state at this time, the beach virtually disappeared, leaving the fishermen houses and supporting facilities exposed to the elements. After 2019, a strong accretion has been observed, a perfect case to test our waterline detection. 
 
-For this case we use all available Sentinel-2 imagery up until 2022. The CNES High Performance Cluster (HPC) functions as an official mirror of ESA's servers through the PEPS (\textit{Plateforme d'Exploitation des Produits Sentinel}) programme. The cluster basically combines data availability and computational power. The SCoWI and other indices are integrated into a processing pipeline similar for the Sentinel-2 bathymetry estimation as in \citet{daly2022new}. 
-
-
-
-I AM HERE.
-
-
-
-
-\subsection{Shoreline evolution monitoring at continental and local scale}
-
-STLOUIS example + a Figure ?
+For this case we use all available Sentinel-2 imagery up until 2022. The CNES High Performance Cluster (HPC) functions as an official mirror of ESA's servers through the PEPS (\textit{Plateforme d'Exploitation des Produits Sentinel}) programme. The cluster basically combines data availability and computational power. The SCoWI, and other supplementary indices, are integrated into a processing pipeline similar for the Sentinel-2 bathymetry estimation as in \citet{daly2022new}. After defining a region of interest, date range and auxiliary bookkeeping parameters the cluster automatically finds all implicated Sentinel-2 imagery, pre-/process/post-process the images, SCoWI and waterline detection before it couples the waterlines to a tidal elevation using FES. Once the images are ready to be used, it is a matter of minutes to analyse the 8 years of data. Figure \ref{senegal} shows the typical result around St. Louis, Senegal.
 
 \myfigure{img/senegal_stLouis_thinLines.png}{2015-2022 application at St. Louis, Senegal}{senegal}{1}
-
 %\myfigure{img/senegal_stLouis_color_GEOSCIENCEAUSSIES_thinLines.png}{2015-2022 application at St. Louis, Senegal}{senegal}{1}
-\subsection{Transferability}
 
-\myfigure{img/duck_comparison.png}{Sentinel-2 versus LandSAT8, and superimposed}{landsat}{1}
+The colouring of the lines in Figure \ref{senegal} relates to a certain date; the colour bar just shows colour increment per year. The overall shoreline estimation covers a 40 km stretch along the coast from Mauritania to village L\'{e}ona. The left-hand plot zooms in on a part of the St. Louis village situated on the sand-spit. This area is particular exposed to waves, and energy in the infra-gravity domain, that inundate the inhabited area. Following the colour code of the lines, one can see the beach eroding between 2015 and 2019, while after 2019 this part of the beach showed significant accretion. The exact cause is currently under investigation as part of the World bank's WACA programme, and is not part of this study. The two plots on the right of Figure \ref{senegal}, show the tip of the sand-spit South of the city of St. Louis. Between August 2015 and end-December 2022 the sand-spit migrated 3700 m southward, an average 530 m per year. The average time-interval between waterline detections was 5 to 10 days depending on the season mostly impacted by clouds and dense Sahara dust.
+ 
+\subsection{Transferability}
+To upscale to large spatiotemporal scales, conserving sufficient local resolution, Sentinel-2 alone is not enough. While the Sentinel-2 dataset is growing, and the Copernicus programme is maintained with Sentinel-2C and D, even extended with Sentinel-2NG (Next Generation), the time-series is not long enough to see the effects of long temporal scale coastal evolution. The SCoWI depends on the spectral bands in the visible domain and the SWIR domain, as long as these spectral bands are maintained in future satellite series, the shoreline detection should work. USGS' Landsat series does have a long, over 40-years, record of Earth Observation satellite data. While the ground-sampling resolution and revisit time interval are slightly worse in comparison to Sentinel-2, it does provide an opportunity to look further back in time. 
+
+The Landsat spectral bands are in a similar range as Sentinel-2 but not purely identical. There are considerable efforts to harmonize the Sentinel and Landsat acquisitions but this is for example one of the reasons that \citet{VOS2019_google} needs to retrain the Coastsat module for each satellite and sensor type. Let us try to just blindly apply the SCoWI index, optimised for Sentinel-2 to some Landsat satellite optical imagery, acquired around the FRF at Duck, USA. Like most Earth Observation optical satellites, Sentinel-2 and Landsat are both sun-synchronised satellites; generally passing over between 10h30 and 11h30 local time. There is only a few dates at which both Sentinel-2 and LandSat pass over at the same day, sometimes several minutes apart. The image in Figure \ref{landsat} represents an illustration of such a date that we can use to understand transferability.
+
+\myfigure{img/duck_comparison.png}{SCoWI applied to Sentinel-2 and LandSat satellite optical imagery.Sentinel-2 versus LandSAT8, and superimposed}{landsat}{1}
 
 
 
