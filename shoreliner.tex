@@ -121,7 +121,7 @@ Given our objective to distinguish water and land as best as possible, the index
 
 While theoretically aimed to be around 0, the wet sand value is remarkably high, around 1800, and thus considered water. Following this, in the coastal zone under the presence of wet sands, the the AWEI$_{sh}$ is likely to estimate the instantaneous waterline landward of the actual waterline. Moreover, white-water is evidently overvalued given the excessively high value in Figure \ref{SCoWI_estimation}. This overvaluation could form an imbalanced third distribution peak which is not ideal for the application of an automatic thresholding method assuming a bimodal distribution.
 
-Starting from the AWEI$_{sh}$, one can optimise the coefficients iteratively to obtain a well balanced distribution (reducing the overvaluation of white water) in which wet sand is closer to land values and around zero. Keeping the same bands as the AWEI$_{sh}$, an optimised expression if found that reaches our aim, emphasising the waterline interface, and we call it the "Subtractive Coastal Water Index" or SCoWI : 
+Starting from the AWEI$_{sh}$, one can optimise the coefficients iteratively to obtain a well balanced distribution (reducing the overvaluation of white water) in which wet sand is closer to land values and around zero. Keeping the same bands as the AWEI$_{sh}$, an optimised expression if found that reaches our aim, emphasising the waterline interface, and we call it the "\textit{Subtractive Coastal Water Index}" or SCoWI : 
 
 \begin{equation}
     \textrm{SCoWI} = \textrm{B} + 2(\textrm{G} - \textrm{NIR}) - 0.75 \textrm{ SWIR$_{1}$} - 0.5 \textrm{ SWIR$_{2}$}
@@ -131,7 +131,7 @@ Starting from the AWEI$_{sh}$, one can optimise the coefficients iteratively to 
 Using equation \ref{eq:scowi}, the same exercise as above is repeated and the results are represented by the orange vertical bars in Figure \ref{SCoWI_estimation}. In general lower absolute values are found for each zone ($\approx -600$), but the distribution is notably more balanced and well zero-ed about the water-land interface. In comparison to the AWEI$_{sh}$, the SCoWI puts more weight on the NIR response and less on the green band. This to emphasise the transition where the NIR response becomes greater than visible bands between the white-water and the wet-wand : the instantaneous waterline. Additionally, the SWIR bands permit to adjust the SCoWI response and fine-tune the balance of the distribution.
         
 \subsection{Waterline extraction process}\label{extract_process}
-An index is just a part of the complete process to deploy satellite imagery to extract instantaneous waterlines. This section presents the process involved to extract the instantaneous waterline on Level1C Sentinel-2 satellite optical imagery. Following the method proposed by \citep{Bishop_sub_pixel}, a refined and robust process using the SCoWI presented before and a new histogram threhsolding procedure extracting sub pixel waterline is described.
+An index is just a part of the complete process to deploy satellite imagery to extract instantaneous waterlines. This section presents the process involved to extract the instantaneous waterline on Level1C Sentinel-2 satellite optical imagery. Following the method proposed by \citep{Bishop_sub_pixel}, a refined and robust process using the SCoWI presented before and a new histogram thresholding procedure extracting sub pixel waterline is described.
 
 \subsubsection{Sentinel-2 imagery and pre-processing}
 As mentioned above, for this work we use Level1C Sentinel-2 satellite optical imagery as all Level1C products are directly available on the CNES' HPC and does not depend on the choice of atmospheric correction routine applied. The Sentinel-2 MultiSpectral Instrument (MSI) measures the Earth reflected solar photons, luminance which is converted to reflected radiance in the Level1C product. The instrument is orientated in nadir orientation and has a radiometric resolution of 13 spectral bands with varying resolutions between 10, 20 and 60 m. The Sentinel-2 mission provides a systematic multispectral coverage of all land areas between 56 degrees South latitude (Cape Horn in South America) and 84 degrees North latitude (north of Greenland) including major islands (greater than 100 km$^2$ size), European islands and all the other small islands located at less than 20 km from the coastline. Sentinel-2 has a revisit time going from 5 days at the equator up to 1 day on the highest latitudes \citep{ESAreq}, and at the coasts this results in a variety of revisit times depending on the location \citep{BERGSMA2020}.
@@ -212,7 +212,7 @@ TBD
 \vspace{6pt} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
+\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
 
 \funding{This work was fully funded by the French Space Agency (CNES)}
 
@@ -226,17 +226,28 @@ The following abbreviations are used in this manuscript:\\
 \noindent 
 
 \begin{tabular}{@{}ll}
+AVISO & Archiving, Validation and Interpretation of Satellite Oceanographic Data\\
 AWEI & Automated Water Extraction Index\\
 CASSIE & Coastal Analyst System from Space Imagery Engine\\
 CNES & Centre National d'Etudes Spatiales\\
-ECFAS & European Coastal Forcasting Awareness System\\
+ECFAS & European Coastal Flood Awareness System\\
+ERDC & Engineer Research and Development Center\\
+FES & Finite Element Solution\\
+FRF & Field Research Facility\\
 GPS & Global Positioning System\\
-IRD & Institut de Recherche pour le developpement\\
 HPC & High Performance Cluster\\
+IRD & Institut de Recherche pour le developpement\\
+LEGOS & Laboratoire d’Etudes en Geophysique et Oceanographie Spatiales\\
 NDWI & Normalised Difference Water Index\\
+MNDWI & Mean Normalised Difference Water Index\\
 MDPI & Multidisciplinary Digital Publishing Institute\\
 NIR & Near Infrared\\
-PEPS & Directory of open access journals\\
+NOAA & National Oceanic and Atmospheric Administration\\
+PEPS & Plateforme d'Exploitation des Produits Sentinel\\
+RGB & Red-Green-Blue\\
+RMS & Root Mean Square\\
+SCoWI & Subtractive Coastal Water Index\\
+SDS & Satellite Derived Shoreline\\
 SWIR & Short Wave InfraRed
 \end{tabular}
 }
