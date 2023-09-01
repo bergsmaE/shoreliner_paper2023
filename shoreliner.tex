@@ -156,20 +156,28 @@ Now a threshold value can be found, exact coordinates of the instantaneous water
 \section{Validation}
 So far all the discussed manipulations above have been developed at sites along the European mainland and its overseas territories. There is however only few sites worldwide, practically non-other than the ERDC's Field Research Facility (FRF) at Duck, NC, USA, that has a temporal direct-measurement density (not video derived shoreline proxies) to appropriately validate the performance of the SCoWI procedure. Hydrodynamics are consistently measured day and night and since 1981, monthly to fortnightly in-situ high-quality topo-bathymetric surveys have been conducted at the FRF \citep{FORTE2017}. In addition, the National Oceanic and Atmospheric Administration (NOAA) has installed since 1995 a water level sensor measuring the level of the sea at Duck every 6 minutes \citep{park2014water}. From the measured bathymetry and instant nearshore water level (within 6 minutes -- effectively 3 minutes) on a given day and time, we deduct a reference shoreline. This reference shoreline is projected in the same coordinate system as the Sentinel-2 before it is then compared to the instantaneous SCoWI derived waterline measured using Sentinel-2 acquisition of the same day. Notably, we like to stress that the FRF has not been a site among the representative beaches used to optimise SCoWI.
 
-For the validation we restrict ourselves to a 3 year period, from August 2019 until August 2022, over which 106 shorelines could be estimated, considering cloud coverage etc. Among these 106 Sentinel-2 acquisitions, only 6 occurred on the same day as an in-situ topo-bathymetric survey at Duck. Figure \ref{validation} shows three of those results over the 3 years. At best over these 6 dates, we find that the SCoWI approach is capable to estimate the instantaneous waterline with an RMS error of 2.6 meters, bias of 0.8 m and standard deviation of 2.5 m. This corresponds to an RMS of 1/4 pixel. 5 out of 6 dates dates show an sub-pixel RMS error, below 10 meters. This sub-pixel performance of the extraction processing demonstrates the ability of this proposed SDS extraction method to extract reliable instantaneous waterlines.
-
-When compared to a state of the art SDS extraction method, CoastSat \citep{VOS2019_sub}, SCoWI produces comparable results or outperforms Coastsat. Taking the Sentinel-2 image of 17 April 2020, SCoWI has an RMS error of 2.6 m versus respectively 16.7 m for Coastsat, a bias of 0.8 m versus 16.3 m and a comparable standard deviation of 2.5 versus 3.5 m. If we compare computational time, using identical computational nodes, available memory and identical Sentinel-2 scenes covering 348 km$^2$, SCoWI is computed in 2.237 seconds while Coastsat took 27.873 seconds. It is evident that the SCoWI is 12.5 times faster as it is a direct calculation without pixel classification which is computationally costly.
-
 \myfigure{img/Results.png}{Comparison of waterline extracted using the new SCoWI-based extraction method (shoreliner) proposed in this paper (green line) with the in-situ measured waterline (red line). The right-hand side histograms display the positional error between the extracted and measured waterline. The smallest the cross-shore RMS error achieved a value of 2.6 meters corresponding to 1/4 of the Sentinel-2 pixel.}{validation}{1}
+
+For the validation we focus ourselves to a 3-year period, from August 2019 until August 2022, over which 106 shorelines could be estimated, considering cloud coverage etc., (which in line with \citep{BERGSMA2020}). Among these 106 Sentinel-2 acquisitions, only 6 occurred on the same day as an in-situ topo-bathymetric survey at Duck. Figure \ref{validation} shows three of those results over the 3 years. At best over these 6 dates, we find that the SCoWI approach is capable to estimate the instantaneous waterline with an RMS error of 2.6 meters, bias of 0.8 m and standard deviation of 2.5 m. This corresponds to an RMS of 1/4 pixel. From the 6 dates that have a satellite acquisition and an in-situ survey, 5 dates show a sub-pixel RMS error, below 10 meters. This sub-pixel performance of the extraction processing demonstrates the ability of this proposed SDS extraction method to extract reliable instantaneous, and stable waterlines.
+
+When compared to a state-of-the-art SDS extraction method, CoastSat \citep{VOS2019_sub}, SCoWI produces comparable results or outperforms Coastsat. Taking the Sentinel-2 image of 17 April 2020, SCoWI has an RMS error of 2.6 m versus respectively 16.7 m for Coastsat, a bias of 0.8 m versus 16.3 m and a comparable standard deviation of 2.5 versus 3.5 m. If we compare computational time, using identical computational nodes, available memory and identical Sentinel-2 scenes covering 348 km$^2$, SCoWI is computed in 2.237 seconds while Coastsat took 27.873 seconds. It is evident that the SCoWI is 12.5 times faster as it is a direct calculation without pixel classification which is computationally costly.
 
 % Shoreliner    2.237 s   x 1
 % pyIntertid    3.245 s   x 1.45  x 1
 % CoastSat      27.873 s  x 12.5  x 8.6
 % Area of 348 km$^2$
 
-
-
 \section{Results and discussion}
+Individual dates show good performance, and similar to \citet{VOS2019_google}, each date can be coupled to a tidal elevation, e.g. CNES' AVISO+ FES model, to reconstuct an inter-tidal topography, evaluate beach slopes and correct the shoreline position for tidal influences and run-up. Here, these corrections are considered essential and evidently the same corrections apply directly to our instantaneous waterline. 
+
+\subsection{Large scale applications}
+Recent trends in waterline detection show the significance of local applications to validate and better understand the performance of the waterline detection whereafter these same methods are extented to larger spatiotemporal scales \citep{VOS2019_sub, almar2021global}. Although the waterline is a first order approximation of morphological change, fluctuations at the coast and climate impacts, it does deliver very valuable insight in the impact of example climate modes on the coastal zone. Also, in areas that are traditionally data poor, like most of Africa \citep{}.  
+
+Let us consider St. Louis in Senegal, that is a storm-free environment exposed to domination of bi-directional very energetic swells that originate from far off to the Northern or Southern Atlantic Ocean. Most of the time the Northern component dominates, resulting in a very strong alongshore transport and migrating sand-spit towards the South \citep{bergsma2020sand, taveneau2021observing}. In 2003, an artificial breach of the sand-spit was forced to relieve the city of St. Louis from extreme water levels on the land-side. Since 2018, St. Louis is monitored regularly to understand the morphodynamics to better adapt to future changes. Interestingly, the beach in front of the city of St. Louis was at most erosive state at this time, the beach virtually disappeared, leaving the fishermen houses and supporting facilities exposed to the elements. After 2019, a strong accretion has been observed, a perfect case to test our waterline detection. 
+
+For this case we use all available Sentinel-2 imagery up until 2022. The CNES High Performance Cluster (HPC) functions as an official mirror of ESA's servers through the PEPS (\textit{Plateforme d'Exploitation des Produits Sentinel}) programme. The cluster basically combines data availability and computational power. The SCoWI and other indeces are integrated into a processing pipeline similar for the Sentinel-2 bathymetry estimation as in \citet{daly2022new}. 
+
+
 
 
 
@@ -179,17 +187,6 @@ I AM HERE.
 
 
 
-%
-%\subsection{Intertidal DEMThe combination between our extracted waterlines and a global tide model such a FES 2014 \citep{carrere2016fes} provides elevation measurements in the intertidal zone with a horizontal resolution of less than 10 meters.
-%Topography derived from conventional remote sensing techniques on the intertidal zone is missing.
-%Uniformity of the sand and high variability of the intertidal zone explain why techniques based on stereoscopic acquisitions to derive the topography of a scene fail in the coastal environment.
-%The intertidal DEM obtained based on 3D extracted water lines is a very interesting result for coastal researchers in terms of modeling and monitoring the elevation of these crucial areas where topography and bathymetry meet.
-%An example of intertidal DEM is provided in Fig.\ref{HENDAYE_topo}.
-%However, caution must be taken when performing an intertidal DEM.
-%The DEM is valid only for aggregation of extracted waterlines acquired over a short period ranging from months to years depending on the site of the study.
-%The morphological evolutions of coastlines induced by erosion and accretion over long periods make the resulting DEM incoherent and thus not representative of the reality.
-
-%\myfigure{img/HENDAYE_shoreline_DEM.png}{An example of intertidal DEM on Hendaye beach, SW France. It was obtained from the combination of the extracted instantaneous waterlines and the predicted water levels of each waterline point with FES2014 global tide model of Sentinel-2 acquisition from XX to XX.}{HENDAYE_topo}{0.7}
 
 \subsection{Shoreline evolution monitoring at continental and local scale}
 
@@ -210,6 +207,8 @@ Limitations:
 - Presence of shadows induced by cliffs
 - Shallow waters such as atolls
 - Tide elevation model
+- Vos et al. 2023 validation dataset.
+- upscaling towards large scales. 
 
 - Help of AI but at what cost ?
 - Adaptative index ?
