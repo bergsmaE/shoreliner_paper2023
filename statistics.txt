@@ -1,0 +1,99 @@
+2019-09-03
+  ---SHORELINER---
+  RMSE: 16.044 m
+  Bias: 15.796 m
+  Standard Deviation: 2.813 m
+  R-squared (R²): 0.938
+  Max diff: 20.812 m
+  ---COASTSAT---
+  RMSE: 10.300 m
+  Bias: -5.918 m
+  Standard Deviation: 8.429 m
+  R-squared (R²): 0.455
+  Max diff: 19.314 m
+
+2020-04-17
+  ---SHORELINER---
+  RMSE: 2.649 m
+  Bias: -0.834 m
+  Standard Deviation: 2.514 m
+  R-squared (R²): 0.947
+  Max diff: 10.299 m
+  ---COASTSAT---
+  RMSE: 16.701 m
+  Bias: -16.326 m
+  Standard Deviation: 3.521 m
+  R-squared (R²): 0.896
+  Max diff: 24.384 m
+
+2020-07-21
+  ---SHORELINER---
+  RMSE: 5.339 m
+  Bias: -4.583 m
+  Standard Deviation: 2.739 m
+  R-squared (R²): 0.961
+  Max diff: 15.371 m
+  ---COASTSAT---
+  RMSE: 26.394 m
+  Bias: -26.035 m
+  Standard Deviation: 4.336 m
+  R-squared (R²): 0.902
+  Max diff: 50.607 m
+
+2022-02-09
+  ---SHORELINER---
+  RMSE: 8.994 m
+  Bias: 8.554 m
+  Standard Deviation: 2.781 m
+  R-squared (R²): 0.948
+  Max diff: 15.492 m
+  ---COASTSAT---
+  RMSE: 9.816 m
+  Bias: -4.107 m
+  Standard Deviation: 8.916 m
+  R-squared (R²): 0.457
+  Max diff: 16.692 m
+
+2019-10-15
+  ---SHORELINER---
+  RMSE: 5.683 m
+  Bias: 5.103 m
+  Standard Deviation: 2.501 m
+  R-squared (R²): 0.927
+  Max diff: 11.426 m
+  ---COASTSAT---
+  RMSE: 11.585 m
+  Bias: -10.357 m
+  Standard Deviation: 5.191 m
+  R-squared (R²): 0.678
+  Max diff: 31.721 m
+
+2022-05-17
+  ---SHORELINER---
+  RMSE: 3.437 m
+  Bias: -2.536 m
+  Standard Deviation: 2.320 m
+  R-squared (R²): 0.966
+  Max diff: 9.235 m
+  ---COASTSAT---
+  RMSE: 29.160 m
+  Bias: -29.045 m
+  Standard Deviation: 2.588 m
+  R-squared (R²): 0.957
+  Max diff: 40.726 m
+
+Global statistics
+  ---SHORELINER---
+  RMSE: 8.346 m
+  Bias: 3.583 m
+  Standard Deviation: 7.538 m
+  R-squared (R²): 0.697
+  Max diff: 20.812 m
+  ---COASTSAT---
+  RMSE: 18.886 m
+  Bias: -15.175 m
+  Standard Deviation: 11.243 m
+  R-squared (R²): 0.321
+  Max diff: 50.607 m
+
+Note: R-squared computed with de-biased SDW compared to in situ waterlines, also not making so much sense in the global section but I keep it anyway.

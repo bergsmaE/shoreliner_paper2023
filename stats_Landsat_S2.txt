@@ -1,0 +1,84 @@
+20190821
+  RMSE: 2.070 m
+  Bias: -1.251 m
+  Standard Deviation: 1.649 m
+  R-squared (R²): 0.979
+  Max diff: 4.398 m
+
+20200128
+  RMSE: 3.045 m
+  Bias: 2.033 m
+  Standard Deviation: 2.266 m
+  R-squared (R²): 0.976
+  Max diff: 8.075 m
+
+20200417
+  RMSE: 3.217 m
+  Bias: 2.870 m
+  Standard Deviation: 1.454 m
+  R-squared (R²): 0.977
+  Max diff: 5.503 m
+
+20201111
+  RMSE: 7.190 m
+  Bias: -6.493 m
+  Standard Deviation: 3.089 m
+  R-squared (R²): 0.965
+  Max diff: 13.367 m
+
+20210927
+  RMSE: 3.661 m
+  Bias: -2.601 m
+  Standard Deviation: 2.577 m
+  R-squared (R²): 0.973
+  Max diff: 9.843 m
+
+20211216
+  RMSE: 2.686 m
+  Bias: 1.978 m
+  Standard Deviation: 1.818 m
+  R-squared (R²): 0.961
+  Max diff: 5.883 m
+
+20220117
+  RMSE: 2.698 m
+  Bias: -0.224 m
+  Standard Deviation: 2.689 m
+  R-squared (R²): 0.909
+  Max diff: 6.441 m
+
+20220626
+  RMSE: 5.066 m
+  Bias: -4.418 m
+  Standard Deviation: 2.479 m
+  R-squared (R²): 0.965
+  Max diff: 13.071 m
+
+20230221
+  RMSE: 2.207 m
+  Bias: 0.083 m
+  Standard Deviation: 2.205 m
+  R-squared (R²): 0.953
+  Max diff: 4.496 m
+
+20230410
+  RMSE: 4.033 m
+  Bias: -1.905 m
+  Standard Deviation: 3.555 m
+  R-squared (R²): 0.795
+  Max diff: 9.763 m
+
+Global statistics (L8 vs S2)
+  RMSE: 3.877 m
+  Bias: -0.993 m
+  Standard Deviation: 3.748 m
+  R-squared (R²): 0.933
+  Max diff: 13.367 m
+  
+ 
+ 20230402 (L9 vs S2)
+  RMSE: 3.793 m
+  Bias: -3.410 m
+  Standard Deviation: 1.662 m
+  R-squared (R²): 0.976
+  Max diff: 7.563 m
